@@ -2,6 +2,7 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const merge = require('webpack-merge')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const common = require('./webpack.common')
 
 const config = {
@@ -38,12 +39,29 @@ const config = {
       }
     ]
   },
+  optimization: {
+    splitChunks: {
+      automaticNameDelimiter: '_',
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name]_[contenthash:8].css",
       chunkFilename: "[id]_[contenthash:8].css"
     }),
+    new BundleAnalyzerPlugin()
   ],
 }
 

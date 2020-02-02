@@ -11,11 +11,11 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    component: () => import('@/pages/index')
+    component: () => import(/* webpackChunkName: "index" */'@/pages/index')
   },
   {
     path: '/mine',
-    component: () => import('@/pages/mine')
+    component: () => import(/* webpackChunkName: "mine" */'@/pages/mine')
   }
 ]
 

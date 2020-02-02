@@ -3,8 +3,9 @@ const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
+  mode: 'production',
   entry: {
-    'vue': ['vue/dist/vue.esm.js'],
+    'vue': ['vue/dist/vue.esm.js']
   },
   output: {
     filename: '[name].dll.js',
@@ -15,7 +16,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.DllPlugin({
       path: path.resolve(__dirname, '../dll/[name].manifest.json'),
-      name: 'vue_[hash]'
+      name: 'vue_[hash]' // 必须和library保持一致
     }),
   ],
 }

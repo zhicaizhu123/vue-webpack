@@ -19,6 +19,9 @@ npm run dev
 npm run build
 ```
 
+### 已完善
+- 新增打包分析
+
 ### 待完善
 - 支持`typescript`
 - 支持`单元测试`
